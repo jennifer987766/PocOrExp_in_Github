@@ -38,7 +38,7 @@ def parse_cve_xml(filename):
         line = line.strip()
         if line.startswith(b"<CVE>"):
             cve_ids.append(line[5:-6].decode(encoding='utf-8'))
-        if line.startswith(b'<Note Ordinal="1" Type="Description">'):
+        if line.startswith(b'<Note Ordinal="1" Type="Description">') or line.startswith(b'<Note Type="Description" Ordinal="1">'):
             cve_descriptions.append(line[37:-7].decode('utf-8',"ignore"))
     cve_infos = []
     if(len(cve_ids)!=len(cve_descriptions)):
